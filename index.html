@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nuestra Boda – Karely & Yahir</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  :root {
+    --gold: #bfa27a; /* Color dorado suave */
+    --dark-gold: #9c7c55;
+    --text-color: #4a4a4a;
+    --bg-paper: #fdfbf7; /* Blanco hueso / papel */
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-paper);
+    color: var(--text-color);
+    overflow-x: hidden;
+  }
+
+  /* TIPOGRAFÍA */
+  h1, h2, h3 {
+    margin: 0;
+    font-weight: normal;
+  }
+
+  .script-font {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: var(--dark-gold);
+    line-height: 1.2;
+  }
+
+  .serif-font {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* EFECTO PARALLAX (FOTOS DE FONDO) */
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh; /* Altura de la foto */
+    width: 100%;
+    position: relative;
+  }
+  
+  .photo-1 { background-image: url("foto_portada.jpg"); }
+  .photo-2 { background-image: url("foto_casual.jpg"); }
+
+  /* CAPA OSCURA SOBRE LAS FOTOS */
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3); /* Oscurece un poco para que se lea el texto si pones algo encima */
+  }
+
+  /* CONTENEDOR TIPO "CARTA" */
+  .paper-container {
+    background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png'); /* Textura sutil */
+    background-color: #fff;
+    max-width: 600px;
+    margin: -50px auto 0; /* Sube sobre la foto */
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  /* SELLO DE LACRE (LOGO) */
+  .wax-seal {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #e0dcd3;
+    border: 3px double var(--dark-gold);
+    margin: -90px auto 20px; /* Flota arriba de la carta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-gold);
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: radial-gradient(circle, #f5f0e6 0%, #dcd0b9 100%);
+    position: relative;
+    z-index: 20;
+  }
+
+  /* TEXTOS DE LA INVITACIÓN */
+  .intro-text {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .names {
+    margin: 20px 0;
+  }
+  
+  .names span {
+    display: block;
+  }
+
+  .date-big {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: var(--text-color);
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 30px 0;
+  }
+
+  /* CONTADOR */
+  #countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  .time-box {
+    text-align: center;
+  }
+  .time-val {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    color: var(--dark-gold);
+  }
+  .time-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+  }
+
+  /* SECCIONES (IGLESIA, SALÓN) */
+  .details-section {
+    margin: 40px 0;
+  }
+  .icon-gold {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .location-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  /* BOTONES */
+  .btn {
+    background-color: transparent;
+    color: var(--dark-gold);
+    border: 1px solid var(--dark-gold);
+    padding: 10px 25px;
+    border-radius: 0; /* Cuadrado elegante */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    text-transform: uppercase;
+  }
+  .btn:hover {
+    background-color: var(--dark-gold);
+    color: white;
+  }
+
+  .btn-rsvp {
+    background-color: var(--dark-gold);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+
+  /* CÓDIGO DE VESTIMENTA */
+  .dress-code-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  .dress-item {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+  }
+  .dress-icon {
+    width: 50px;
+    margin-bottom: 10px;
+  }
+  .prohibited-colors {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    position: relative;
+  }
+  .color-circle::after {
+    content: '✕';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: white;
+    text-shadow: 0 0 2px black;
+  }
+
+  /* MESA DE REGALOS */
+  .gift-box {
+    border: 2px dashed var(--gold);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 10px;
+  }
+  .liverpool-logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #e91e63; /* Rosa Liverpool aprox */
+    font-family: sans-serif;
+    letter-spacing: -1px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #333;
+    color: #aaa;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  
+  /* REPRODUCTOR DE MÚSICA */
+  #music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    cursor: pointer;
+    color: var(--dark-gold);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .script-font { font-size: 2.8rem; }
+    .parallax { height: 50vh; }
+  }
+</style>
+</head>
+
+<body>
+
+<audio id="bg-music" loop>
+  <source src="https://files.catbox.moe/4w9c5t.mp3" type="audio/mpeg">
+</audio>
+<div id="music-control" onclick="toggleMusic()">
+  <i class="fas fa-play" id="music-icon"></i>
+</div>
+
+<div class="parallax photo-1">
+  <div class="overlay"></div>
+</div>
+
+<div class="paper-container">
+  
+  <div class="wax-seal">K&Y</div>
+
+  <p class="intro-text">En compañía de nuestros padres</p>
+  
+  <div class="names script-font">
+    Karely & Yahir
+  </div>
+
+  <p class="serif-font" style="font-style: italic; color: #666;">Deseamos compartir con ustedes la alegría de nuestro matrimonio</p>
+
+  <div class="date-big serif-font">
+    VIERNES 19 DIC 2025
+  </div>
+
+  <div id="countdown">
+    <div class="time-box"><div class="time-val" id="days">00</div><div class="time-label">Días</div></div>
+    <div class="time-box"><div class="time-val" id="hours">00</div><div class="time-label">Hrs</div></div>
+    <div class="time-box"><div class="time-val" id="minutes">00</div><div class="time-label">Min</div></div>
+    <div class="time-box"><div class="time-val" id="seconds">00</div><div class="time-label">Seg</div></div>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+  <div class="details-section">
+    <i class="fas fa-church icon-gold"></i>
+    <h3 class="serif-font" style="font-size: 1.5rem;">Ceremonia Religiosa</h3>
+    <p class="location-title">Parroquia Santísimo Sacramento</p>
+    <p>4:00 PM</p>
+    <a class="btn" href="https://maps.app.goo.gl/C1hdUONasvG6r2Whu" target="_blank">
+      Ver Ubicación
+    </a>
+  </div>
+
+  <div class="details-section">
+    <i class="fas fa-glass-cheers icon-gold"></i>
+    <h3 class="serif-font" style="font-size: 1.5rem;">Recepción</h3>
+    <p class="location-title">Salón de Fiestas Wimbledon Raquet Club</p>
+    <p>6:30 PM</p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Salón+de+Fiestas+Wimbledon+Raquet+Club" target="_blank">
+      Ver Ubicación
+    </a>
+  </div>
+
+</div> <div class="parallax photo-2">
+  <div class="overlay"></div>
+</div>
+
+<div class="paper-container" style="margin-top: -50px;">
+
+  <h2 class="script-font" style="font-size: 2.5rem; margin-bottom: 20px;">Código de Vestimenta</h2>
+  
+  <div class="dress-code-container">
+    <div class="dress-item">
+      <i class="fas fa-female" style="font-size: 3rem; color: #555;"></i>
+      <p style="font-weight: bold; margin: 10px 0;">MUJERES</p>
+      <p style="font-size: 0.9rem;">Vestido Largo</p>
+      <div class="prohibited-colors">
+        <div class="color-circle" style="background: white;" title="No Blanco"></div>
+        <div class="color-circle" style="background: #f5f5dc;" title="No Beige"></div>
+        <div class="color-circle" style="background: silver;" title="No Plateado"></div>
+        <div class="color-circle" style="background: red;" title="No Rojo"></div>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 5px; color: #888;">(No blanco, beige, plateado, rojo)</p>
+    </div>
+
+    <div class="dress-item">
+      <i class="fas fa-user-tie" style="font-size: 3rem; color: #333;"></i>
+      <p style="font-weight: bold; margin: 10px 0;">HOMBRES</p>
+      <p style="font-size: 0.9rem;">Traje Formal<br>Zapato Formal<br>Corbata</p>
+      <div class="prohibited-colors">
+        <div class="color-circle" style="background: #add8e6;" title="No Azul Claro"></div>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 5px; color: #888;">(No azul claro)</p>
+    </div>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+  <h2 class="serif-font">Mesa de Regalos</h2>
+  <div class="gift-box">
+    <i class="fas fa-gift" style="font-size: 2.5rem; color: #e91e63; margin-bottom: 15px;"></i>
+    <p style="margin: 0;">Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros:</p>
+    <p class="liverpool-logo" style="margin-top: 15px;">Liverpool</p>
+    <p style="font-size: 1.2rem; letter-spacing: 2px;">Evento: <strong>51863210</strong></p>
+  </div>
+
+  <div style="background-color: #faf8f5; padding: 40px 20px; border-radius: 8px;">
+    <h2 class="script-font" style="font-size: 3rem;">Confirmar Asistencia</h2>
+    <p>¡Será un honor contar contigo!</p>
+    
+    <a class="btn btn-rsvp" href="https://wa.me/528335162327?text=Hola%2C%20confirmo%20asistencia%20para%20tu%20boda" target="_blank">
+      <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  Hecho con amor para Karely & Yahir - 2025
+</footer>
+
+<script>
+  // CONTADOR
+  const targetDate = new Date("December 19, 2025 16:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = d < 10 ? '0' + d : d;
+    document.getElementById("hours").innerText = h < 10 ? '0' + h : h;
+    document.getElementById("minutes").innerText = m < 10 ? '0' + m : m;
+    document.getElementById("seconds").innerText = s < 10 ? '0' + s : s;
+  }, 1000);
+
+  // CONTROL DE MÚSICA
+  const audio = document.getElementById("bg-music");
+  const icon = document.getElementById("music-icon");
+  
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play();
+      icon.classList.remove("fa-play");
+      icon.classList.add("fa-pause");
+    } else {
+      audio.pause();
+      icon.classList.add("fa-play");
+      icon.classList.remove("fa-pause");
+    }
+  }
+  
+  // Intentar reproducir automáticamente (algunos navegadores bloquean esto)
+  window.addEventListener('click', () => {
+    if(audio.paused) toggleMusic();
+  }, { once: true });
+</script>
+
+</body>
+</html>
